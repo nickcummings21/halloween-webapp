@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,
+          user-scalable=yes, maximum-scale=2.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Butcherman|Creepster|Eater|Nosifer" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <!--<script src="/node_modules/angular/angular.js"></script>-->
+
+    <link rel="stylesheet" href="stylesheets/main.css">
+
+    <title>Happy Halloween</title>
+</head>
+<body ng-app="scaryApp" ng-controller="ScaryCtrl" onload="getSymbolsInfo()">
+
+    <div class="page-title">
+        <h1>Happy Halloween!</h1>
+        <h3>Click on a picture for some fun Halloween trivia!</h3>
+    </div>
+
+    <div class="halloween-symbols">
+
+        <div class="halloween-symbol" ng-repeat="sym in halloweenSymbols" ng-click="showSymbolInfo(sym.name)">
+            <img src="{{ sym.imageUrl }}" alt="{{ sym.name }}">
+            <p class="symbol-title">{{ sym.title }}</p>
+        </div>
+
+    </div>
+
+    <div class="modal hidden" onclick="hideModal()">
+        <img class="modal-img" src="" alt="">
+        <p class="modal-txt"></p>
+        <p class="modal-footer">Click anywhere to close.</p>
+    </div>
+
+    <footer>
+
+    </footer>
+
+    <script>
+
+        let app = angular.module('scaryApp', []);
+
+        let ctrl = app.controller('ScaryCtrl',
+            function ($scope) {
+
+                $scope.halloweenSymbols = [
+
+                    {
+                        title: 'Trick or Treat!',
+                        name: 'trick-or-treat',
+                        imageUrl: 'images\\trick-or-treat.svg'
+                    },
+                    {
+                        title: 'Jack-o\'-Lanterns',
+                        name: 'pumpkins',
+                        imageUrl: 'images\\pumpkins.svg'
+                    },
+                    {
+                        title: 'Ghosts',
+                        name: 'ghosts',
+                        imageUrl: 'images\\ghost.svg'
+                    },
+                    {
+                        title: 'Frankenstein\'s Monster',
+                        name: 'frankenstein',
+                        imageUrl: 'images\\frankenstein.svg'
+                    },
+                    {
+                        title: 'The Mummy',
+                        name: 'mummy',
+                        imageUrl: 'images\\mummy.svg'
+                    },
+                    {
+                        title: 'Dracula',
+                        name: 'vampire',
+                        imageUrl: 'images\\vampire.svg'
+                    },
+                    {
+                        title: 'Haunted Houses',
+                        name: 'haunted-house',
+                        imageUrl: 'images/haunted-house.svg'
+                    },
+                    {
+                        title: 'Werewolves',
+                        name: 'werewolf',
+                        imageUrl: 'images/werewolf.svg'
+                    },
+                    {
+                        title: 'Zombies',
+                        name: 'zombie',
+                        imageUrl: 'images/zombie.svg'
+                    },
+                    {
+                        title: 'Witches',
+                        name: 'witch',
+                        imageUrl: 'images\\witch.svg'
+                    },
+                    {
+                        title: 'Evil Clowns',
+                        name: 'clown',
+                        imageUrl: 'images/clown.svg'
+                    },
+                    {
+                        title: 'The Grim Reaper',
+                        name: 'reaper',
+                        imageUrl: 'images\\reaper.svg'
+                    },
+                    {
+                        title: 'Owls',
+                        name: 'owl',
+                        imageUrl: 'images/owl.svg'
+                    },
+                    {
+                        title: 'A Full Moon',
+                        name: 'moon',
+                        imageUrl: 'images\\moon.svg'
+                    },
+                    {
+                        title: 'Scarecrows',
+                        name: 'scarecrow',
+                        imageUrl: 'images/scarecrow.svg'
+                    }
+                ];
+
+                $scope.showSymbolInfo = function (symbolName) {
+                    showSymbolInfo(symbolName);
+                };
+            }
+        );
+
+        const symbolImages = {
+            'frankenstein': 'images/frankenstein.svg',
+            'vampire': 'images/vampire.svg',
+            'mummy': 'images/mummy.svg',
+            'ghosts': 'images/ghost.svg',
+            'moon': 'images/moon.svg',
+            'pumpkins': 'images/pumpkins.svg',
+            'reaper': 'images/reaper.svg',
+            'witch': 'images/witch.svg',
+            'trick-or-treat': 'images/trick-or-treat.svg',
+            'scarecrow': 'images/scarecrow.svg',
+            'owl': 'images/owl.svg',
+            'haunted-house': 'images/haunted-house.svg',
+            'zombie': 'images/zombie.svg',
+            'werewolf': 'images/werewolf.svg',
+            'clown': 'images/clown.svg'
+        };
+
+        const infoFiles = [
+            '/frankenstein.txt', '/ghosts.txt', '/moon.txt', '/mummy.txt', '/pumpkins.txt', '/reaper.txt',
+            '/trick-or-treat.txt', '/vampire.txt', '/witch.txt', '/scarecrow.txt', '/owl.txt', '/haunted-house.txt',
+            '/zombie.txt', '/werewolf.txt', '/clown.txt'
+        ];
+
+        let symbolsInfo = {};
+
+        function getSymbolsInfo() {
+            console.log('Requesting symbol info');
+
+            for (let i = 0; i < infoFiles.length; i++) {
+
+                let url = 'getinfo?file=' + infoFiles[i];
+                $.getJSON(url, function (data) {
+                    console.log(data);
+                    symbolsInfo[data.name] = data.info;
+                });
+            }
+        }
+
+        function showSymbolInfo(symbolName) {
+            console.log('Get info for: ' + symbolName);
+
+            let symbolInfo = symbolsInfo[symbolName];
+
+            let modalImg = document.querySelector('.modal-img');
+            console.log(modalImg);
+            modalImg.src = symbolImages[symbolName];
+
+            let modalText = document.querySelector('.modal-txt');
+            console.log(modalText);
+            modalText.innerHTML = symbolInfo;
+
+            let modal = document.querySelector('.modal');
+            modal.classList.remove('hidden');
+
+            // modal.style.animationName = 'zoom'
+        }
+
+        function hideModal() {
+            let modal = document.querySelector('.modal');
+            // modal.setAttribute('animation-name', 'zoom');
+            // modal.style.animationName = 'zoom-out';
+            // console.log(modal.style);
+            modal.classList.add('hidden');
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<p>A zombie is a fictional undead being created through the reanimation of a human corpse. The term comes from Haitian
+folklore, where a zombie is a dead body reanimated through various methods, most commonly magic. Modern depictions of
+the reanimation of the dead do not necessarily involve magic but often invoke science fictional methods such as
+carriers, radiation, mental diseases, vectors, pathogens, scientific accidents, etc.</p>
+
+<p>See <a href="https://en.wikipedia.org/wiki/Zombie">https://en.wikipedia.org/wiki/Zombie</a> for more information
+about zombies.</p>

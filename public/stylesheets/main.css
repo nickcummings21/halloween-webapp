@@ -1,0 +1,153 @@
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: auto;
+}
+
+body {
+    text-align: center;
+    font-family: 'Creepster', cursive;
+    color: orange;
+    height: inherit;
+    background: #0d013f url("../images/spooky-bg.jpg") fixed center/cover;
+}
+
+.page-title {
+    background-color: rgba(13, 1, 63, .8);
+    border: solid 3px orange;
+    border-radius: 16px;
+    margin: 1rem auto;
+    padding: 1rem;
+    width: 75%;
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+h3 {
+    font-family: Calibri, sans-serif;
+}
+
+.halloween-symbols {
+    border: solid 3px orange;
+    border-radius: 16px;
+    width: 70%;
+    max-width: 750px;
+    margin: 2rem auto;
+    background-color: rgba(13, 1, 63, .8);
+}
+
+.halloween-symbol {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.7rem;
+    /*border: solid 1px orange;*/
+    margin: 1rem;
+    padding: 1rem .5rem 0 .5rem;
+    width: 25%;
+    cursor: pointer;
+}
+
+.halloween-symbol img {
+    width: 150px;
+    /*box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, .5);*/
+}
+
+.halloween-symbol p {
+    margin: 1rem 0;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+@keyframes zoom-out {
+    from {transform:scale(1)}
+    to {transform:scale(0)}
+}
+
+.modal {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    background: rgba(0, 0, 0, .9);
+    text-align: center;
+    vertical-align: middle;
+    padding: 2rem;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    /*transition: opacity 1s;*/
+}
+
+.modal-img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40%;
+    max-width: 300px;
+    margin: 2rem;
+}
+
+.modal-txt {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: Calibri, sans-serif;
+    width: 40%;
+    padding: 1rem;
+}
+
+.modal-txt a {
+    text-decoration: none;
+    color: white;
+}
+
+.modal-txt a:hover {
+    text-decoration: underline;
+}
+
+.modal-footer {
+    
+}
+
+.hidden {
+    display: none;
+    /*visibility: hidden;*/
+    /*opacity: 0;*/
+}
+
+@media (max-width: 60rem) {
+
+    .halloween-symbol {
+        width: 40%;
+    }
+
+    .modal-img,
+    .modal-txt {
+        width: 80%;
+    }
+}
+
+@media (max-width: 36rem) {
+    
+    body {
+        background: rgb(13, 1, 63) url("../images/mobile-spooky-bg.jpg") fixed center;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .halloween-symbol {
+        width: 90%;
+    }
+}

@@ -1,0 +1,8 @@
+<p>The mysterious, beautiful owl is a bird worth studying. It flies by night and it has an uncanny ability to capture
+prey. But because these birds are night-fliers, humans have often feared them. Many societies and cultures associate
+them with darkness, negativity, and mystery while others associated them with wisdom and prophecy.</p>
+
+<p>In general, owls are viewed as harbingers of bad luck, ill health, or death. The belief is widespread even today.</p>
+
+<p>See <a href="https://en.wikipedia.org/wiki/Owl">https://en.wikipedia.org/wiki/Owl</a> for more information about
+owls.</p>
