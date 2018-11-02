@@ -50,6 +50,7 @@ h3 {
     padding: 1rem .5rem 0 .5rem;
     width: 25%;
     cursor: pointer;
+    transition: transform .2s;
 }
 
 .halloween-symbol img {
@@ -59,16 +60,6 @@ h3 {
 
 .halloween-symbol p {
     margin: 1rem 0;
-}
-
-@keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
-}
-
-@keyframes zoom-out {
-    from {transform:scale(1)}
-    to {transform:scale(0)}
 }
 
 .modal {
@@ -87,7 +78,6 @@ h3 {
     padding: 2rem;
     animation-name: zoom;
     animation-duration: 0.6s;
-    /*transition: opacity 1s;*/
 }
 
 .modal-img {
@@ -150,4 +140,65 @@ h3 {
     .halloween-symbol {
         width: 90%;
     }
+}
+
+.shake:hover {
+    animation: shake 1s 1 ease-out;
+}
+
+#anim-switch {
+    display: none;
+}
+
+@media (any-hover: hover) {
+    
+    /*.halloween-symbol:hover {*/
+    /*    transform: scale(1.2);*/
+        /*animation: shake 1s 1 ease-out;*/
+    /*}*/
+    
+    .page-title {
+        position: relative;
+    }
+    
+    #anim-switch {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 1rem;
+    }
+    
+    /*h3 {*/
+    /*    display: inline-block;*/
+    /*    position: relative;*/
+    /*    left: 4rem;*/
+    /*}*/
+
+    .zoom:hover {
+        transform: scale(1.2);
+        /*animation: shake 1s 1 ease-out;*/
+    }
+
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+@keyframes zoom-out {
+    from {transform:scale(1)}
+    to {transform:scale(0)}
+}
+
+@keyframes shake {
+  10%, 30%, 50%, 70%, 90% {
+    /*transform: scale(1.2);*/
+    transform: rotate(5deg);
+  }
+  
+  20%, 40%, 60%, 80% {
+    /*transform: scale(1.2);*/
+    transform: rotate(-5deg);
+  }
 }

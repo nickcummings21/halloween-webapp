@@ -12,6 +12,7 @@
     <!--<script src="/node_modules/angular/angular.js"></script>-->
 
     <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/extra.css">
 
     <title>Happy Halloween</title>
 </head>
@@ -20,11 +21,19 @@
     <div class="page-title">
         <h1>Happy Halloween!</h1>
         <h3>Click on a picture for some fun Halloween trivia!</h3>
+        
+        <div id="anim-switch">
+            <p class="switch-label">Zoom</p>
+            <label class="switch" onclick="toggleAnimation()">
+              <input id="toggle" type="checkbox">
+              <span class="slider round"></span>
+            </label>
+        </div>
     </div>
 
     <div class="halloween-symbols">
 
-        <div class="halloween-symbol" ng-repeat="sym in halloweenSymbols" ng-click="showSymbolInfo(sym.name)">
+        <div class="halloween-symbol zoom" ng-repeat="sym in halloweenSymbols" ng-click="showSymbolInfo(sym.name)">
             <img src="{{ sym.imageUrl }}" alt="{{ sym.name }}">
             <p class="symbol-title">{{ sym.title }}</p>
         </div>
@@ -42,6 +51,29 @@
     </footer>
 
     <script>
+    
+        function toggleAnimation() {
+            let checked = document.querySelector('#toggle').checked;
+            console.log('Toggle: ' + checked);
+            
+            let animation = checked ? '' : 'shake 1s 1 ease-out';
+            let halloweenSymbols = document.querySelectorAll('.halloween-symbol');
+            
+            if (checked) {
+                for (let i = 0; i < halloweenSymbols.length; i++) {
+                    halloweenSymbols[i].classList.remove('zoom');
+                    halloweenSymbols[i].classList.add('shake');
+                    document.querySelector('.switch-label').innerHTML = 'Shake';
+                }
+            }
+            else {
+                for (let i = 0; i < halloweenSymbols.length; i++) {
+                    halloweenSymbols[i].classList.remove('shake');
+                    halloweenSymbols[i].classList.add('zoom');
+                    document.querySelector('.switch-label').innerHTML = 'Zoom';
+                }
+            }
+        }
 
         let app = angular.module('scaryApp', []);
 
